@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Component } from 'react';
 import { Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -8,24 +8,25 @@ import Chat from './components/Chat'
 import Diary from './components/Diary'
 import Profile from './components/Profile'
 import Together from './components/Together'
+import socketer from './socketer'
 
 
 const Tab = createBottomTabNavigator()
 
-const tabIcon = {
+const tabIconHash = {
   Together: 'heart-outline',
   Diary: 'book-outline',
   Chat: 'chatbox-ellipses-outline',
   Profile: 'person-circle-outline',
 }
 
-export default function App() {
+export default () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            return <Ionicons name={tabIcon[route.name]} size={size} color={color} />;
+            return <Ionicons name={tabIconHash[route.name]} size={size} color={color} />;
           },
         })}
         tabBarOptions={{
